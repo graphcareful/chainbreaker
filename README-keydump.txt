@@ -102,3 +102,49 @@ OpenSSL> pkcs12 -export -out secret.p12 -inkey secret.key -in secret.crt
 Enter Export Password:
 Verifying - Enter Export Password:
 
+➜  chainbreaker git:(master) ✗ tree                                                                                                                           [11/1774]
+.
+├── chainbreaker.py
+├── create_certs.bash
+├── exported
+│   ├── associated
+│   │   └── 1
+│   │       ├── 3.key
+│   │       └── 4.crt
+│   ├── certs
+│   │   ├── 1.crt
+│   │   ├── 2.crt
+│   │   ├── 3.crt
+│   │   ├── 4.crt
+│   │   ├── 5.crt
+│   │   ├── 6.crt
+│   │   └── 7.crt
+│   └── keys
+│       ├── 1.key
+│       ├── 2.key
+│       ├── 3.key
+│       ├── 4.key
+│       ├── 5.key
+│       ├── 6.key
+│       ├── 7.key
+│       └── 8.key
+├── LICENSE
+├── match.sh
+├── pbkdf2.py
+├── pyDes.py
+├── README-keydump.txt
+├── README.md
+├── Schema.py
+├── secret.crt
+├── secret.key
+├── secret.p12
+└── validator.py
+
+5 directories, 30 files
+➜  chainbreaker git:(master) ✗ openssl x509 -inform DER -in exported/associated/1/4.crt -out secret.crt
+➜  chainbreaker git:(master) ✗ openssl rsa -inform DER -in exported/associated/1/3.key -out secret.key
+writing RSA key
+➜  chainbreaker git:(master) ✗ openssl pkcs12 -export -out secret.p12 -inkey secret.key -in secret.crt
+
+Enter Export Password:
+Verifying - Enter Export Password:
